@@ -6,7 +6,7 @@ pipeline {
   }
 
   environment {
-    ARTIFACT_ID = "elbuo8/webapp:${env.BUILD_NUMBER}"
+    ARTIFACT_ID = "gtolbar/devops-app:${env.BUILD_NUMBER}"
   }
 
   stages {
@@ -36,7 +36,7 @@ pipeline {
     }
     stage('Schedule Staging Deployment') {
       when {
-        branch 'master'
+        branch 'main'
       }
       steps {
         build job: 'deploy-webapp-staging', parameters: [string(name: 'ARTIFACT_ID', value: "${env.ARTIFACT_ID}")], wait: false
